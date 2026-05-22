@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farhanur Rahman Jishan - CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2540;
+      --blue: #2d5be3;
+      --accent: #e8b84b;
+      --light: #f4f6fb;
+      --muted: #8892a4;
+      --white: #ffffff;
+      --border: #dde3f0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #e9ecf5;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 30px 10px;
+    }
+
+    .cv {
+      background: var(--white);
+      width: 700px;
+      max-width: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(26,37,64,0.18);
+      animation: slideUp 0.7s cubic-bezier(.22,.68,0,1.2) both;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--navy);
+      padding: 44px 50px 36px;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45,91,227,0.35) 0%, transparent 70%);
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 30%;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,184,75,0.18) 0%, transparent 70%);
+    }
+
+    /* Photo */
+    .photo-wrap {
+      flex-shrink: 0;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      overflow: hidden;
+      background: linear-gradient(135deg, #2d5be3 0%, #1a2540 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 6px 24px rgba(45,91,227,0.35);
+      animation: popIn 0.6s 0.3s cubic-bezier(.22,.68,0,1.5) both;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      text-align: center;
+      gap: 4px;
+    }
+    .photo-placeholder svg { width: 36px; height: 36px; opacity: 0.5; }
+
+    .photo-wrap label {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 10px;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .photo-wrap:hover label { opacity: 1; }
+    .photo-wrap label span {
+      color: #fff; font-size: 10px; font-weight: 500; letter-spacing: .04em;
+    }
+    .photo-wrap input[type=file] { display: none; }
+    #preview-img { width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 50%; }
+
+    /* Header text */
+    .header-text { position: relative; z-index: 1; flex: 1; }
+
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+    .name span { color: var(--accent); }
+
+    .id-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.65);
+      font-size: 11px;
+      letter-spacing: .08em;
+      border-radius: 20px;
+      padding: 3px 12px;
+      margin-bottom: 18px;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+    }
+    .contact-item svg { color: var(--accent); flex-shrink: 0; }
+
+    /* ── BODY ── */
+    .body { display: grid; grid-template-columns: 1fr 1.6fr; }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--light);
+      padding: 36px 28px;
+      border-right: 1px solid var(--border);
+    }
+
+    /* Main */
+    .main { padding: 36px 38px; }
+
+    /* Section title */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, var(--border), transparent);
+      border-radius: 2px;
+    }
+
+    .section { margin-bottom: 30px; }
+
+    /* Skills */
+    .skill-item { margin-bottom: 13px; }
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+    .skill-bar {
+      height: 5px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--accent));
+      border-radius: 3px;
+      animation: barGrow 1s ease both;
+    }
+    @keyframes barGrow { from { width: 0 !important; } }
+
+    /* Languages */
+    .lang-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .lang-name { font-size: 13px; font-weight: 500; color: var(--navy); }
+    .lang-dots { display: flex; gap: 4px; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--border); }
+    .dot.active { background: var(--blue); }
+
+    /* Experience */
+    .exp-item {
+      padding: 14px 16px;
+      border-left: 3px solid var(--blue);
+      background: var(--white);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 12px;
+    }
+    .exp-title { font-size: 13.5px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+    .exp-sub { font-size: 12px; color: var(--muted); }
+
+    /* Education table */
+    .edu-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .edu-table thead th {
+      background: var(--navy);
+      color: var(--white);
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
+    .edu-table thead th:first-child { border-radius: 6px 0 0 0; }
+    .edu-table thead th:last-child  { border-radius: 0 6px 0 0; }
+    .edu-table tbody tr { border-bottom: 1px solid var(--border); }
+    .edu-table tbody tr:last-child { border-bottom: none; }
+    .edu-table tbody td { padding: 10px 12px; color: #374151; vertical-align: top; }
+    .edu-table tbody tr:nth-child(even) td { background: var(--light); }
+    .result-badge {
+      background: linear-gradient(135deg, var(--blue), #1a3fa0);
+      color: #fff;
+      border-radius: 12px;
+      padding: 2px 9px;
+      font-size: 11.5px;
+      font-weight: 600;
+      display: inline-block;
+    }
+    .running-badge {
+      background: linear-gradient(135deg, var(--accent), #c98c1a);
+      color: #fff;
+      border-radius: 12px;
+      padding: 2px 9px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* Objective */
+    .objective-text {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: #4b5563;
+      background: var(--light);
+      border-left: 4px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+    }
+  </style>
+</head>
+<body>
+<div class="cv">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="photo-wrap" style="order: 2;">
+      <img id="preview-img" alt="Profile Photo">
+      <div class="photo-placeholder" id="ph-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <span>Your Photo</span>
+      </div>
+      <label for="photo-upload">
+        <span>📷 Change</span>
+      </label>
+      <input type="file" id="photo-upload" accept="image/*">
+    </div>
+
+    <div class="header-text" style="order: 1;">
+      <div class="name">Farhanur Rahman <span>Jishan</span></div>
+      <div class="id-badge">ID: 0222320005101034</div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Love Lane, Chattogram
+        </div>
+        <div class="contact-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          202mdfarhan22@gmail.com
+        </div>
+        <div class="contact-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2A19.8 19.8 0 013.1 4.2 2 2 0 015.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.6a2 2 0 01-.5 2.1L9.1 9.9a16 16 0 006.9 6.9l1.5-1.2a2 2 0 012.1-.5c.8.3 1.7.6 2.6.7A2 2 0 0122 16.9z"/></svg>
+          1234567890
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="skill-item">
+          <div class="skill-label"><span>HTML</span><span>90%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>CSS</span><span>80%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>JavaScript</span><span>70%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Python</span><span>65%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>C++</span><span>60%</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Languages</div>
+        <div class="lang-item">
+          <span class="lang-name">English</span>
+          <div class="lang-dots">
+            <div class="dot active"></div><div class="dot active"></div>
+            <div class="dot active"></div><div class="dot active"></div><div class="dot"></div>
+          </div>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Bengali</span>
+          <div class="lang-dots">
+            <div class="dot active"></div><div class="dot active"></div>
+            <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Experience</div>
+        <div class="exp-item">
+          <div class="exp-title">Office Executive</div>
+          <div class="exp-sub">Internship · Aspiring BD</div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-title">Volunteer</div>
+          <div class="exp-sub">The Aura · Social Development</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+      <div class="section">
+        <div class="section-title">Objective</div>
+        <p class="objective-text">
+         Computer Science and Engineering undergraduate at Premier University with
+a strong interest in Web Development, Software Engineering, and Problem
+Solving. Skilled in HTML, CSS, JavaScript, C++, and Python. Seeking
+opportunities to apply technical knowledge, enhance professional skills,
+and contribute effectively to organizational growth through innovation,
+teamwork, and continuous learning.
+        </p>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Education</div>
+        <table class="edu-table">
+          <thead>
+            <tr>
+              <th>Degree</th>
+              <th>Institution</th>
+              <th>Year</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>BSc in CS</strong></td>
+              <td>Premier University</td>
+              <td><span class="running-badge">Running</span></td>
+              <td><span class="result-badge">3.26</span></td>
+            </tr>
+            <tr>
+              <td><strong>HSC</strong></td>
+              <td>BAF Shaheen College</td>
+              <td>2022</td>
+              <td><span class="result-badge">4.50</span></td>
+            </tr>
+            <tr>
+              <td><strong>SSC</strong></td>
+              <td>Bakalia High School</td>
+              <td>2020</td>
+              <td><span class="result-badge">4.78</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const input = document.getElementById('photo-upload');
+  const img   = document.getElementById('preview-img');
+  const ph    = document.getElementById('ph-placeholder');
+
+  input.addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      img.src = e.target.result;
+      img.style.display = 'block';
+      ph.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
+</body>
+</html>
